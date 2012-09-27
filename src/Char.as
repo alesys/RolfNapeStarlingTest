@@ -12,10 +12,9 @@ package
 	public class Char extends Sprite
 	{
 		private var body:Body;
-		public function Char(body:Body)
+		public function Char()
 		{
 			super();
-			this.body = body;
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		private function init(e:Event):void
@@ -23,7 +22,10 @@ package
 			addChild(new MovieClip(Assets.getTexture((Math.random()>0.5)?Assets.SPRITE_FLAVIA:Assets.SPRITE_MARIANA)));
 			pivotX = width>>1;
 			pivotY = height>>1;
-			
+		}
+		public function activate(body:Body):void
+		{
+			this.body = body;
 			addEventListener(TouchEvent.TOUCH, handle_touch);
 		}
 		private function handle_touch(te:TouchEvent):void
